@@ -1,6 +1,7 @@
 import { FluidGradientText } from "@/components/fluid-gradient-text";
 import { Logo, GitHub, Twitter, LinkedIn, Dmca} from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
+import { constants } from "@/lib/constants";
 
 interface FooterProps {
     versions: {
@@ -12,7 +13,6 @@ interface FooterProps {
     };
     build: {
         id: string;
-        tag: string;
         date: string;
     }
 }
@@ -30,15 +30,15 @@ export default function Footer({props}: {props: FooterProps}) {
                     <div className="grid grid-cols-4 divide-x divide-y divide-border border-b">
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">CRAFTED BY</h6>
-                            <a target="_blank" href="https://x.com/neo_subhamoy" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">@neo_subhamoy</a>
+                            <a target="_blank" href={constants.socials.twitter} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">@neo_subhamoy</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">VERSION</h6>
-                            <a target="_blank" href="#" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">{props.versions.app}</a>
+                            <p className="text-sm font-mono">{props.versions.app}</p>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">BUILD</h6>
-                            <a target="_blank" href="#" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">{props.build.tag}</a>
+                            <a target="_blank" href="#" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">{props.build.id}</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">DATE</h6>
@@ -50,11 +50,11 @@ export default function Footer({props}: {props: FooterProps}) {
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">SOURCE CODE</h6>
-                            <a target="_blank" href="#" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">GitHub</a>
+                            <a target="_blank" href={constants.repo} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">GitHub</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">LICENSE</h6>
-                            <a target="_blank" href="#" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">MIT License</a>
+                            <a target="_blank" href={constants.repo + '/blob/main/LICENSE'} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">MIT License</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">ANALYTICS</h6>
@@ -92,23 +92,23 @@ export default function Footer({props}: {props: FooterProps}) {
                     </div>
                     <div className="spacer p-1.5 border-b"></div>
                     <div className="flex items-center justify-between">
-                        <a href="https://neosubhamoy.com" className="flex items-center px-2 py-1">
+                        <a href={constants.homepage} className="flex items-center px-2 py-1">
                             <Logo className="w-10 h-8 text-muted-foreground hover:text-primary" />
                         </a>
                         <div className="flex items-center px-3 py-1 gap-3">
-                            <a href="#" className="">
+                            <a href={constants.socials.twitter} className="">
                                 <Twitter className="w-3.5 text-muted-foreground hover:text-primary" />
                             </a>
                             <Separator orientation="vertical" />
-                            <a href="#" className="">
+                            <a href={constants.socials.github} className="">
                                 <GitHub className="w-4 text-muted-foreground hover:text-primary" />
                             </a>
                             <Separator orientation="vertical" />
-                            <a href="#" className="">
+                            <a href={constants.socials.linkedin} className="">
                                 <LinkedIn className="w-4 text-muted-foreground hover:text-primary" />
                             </a>
                             <Separator orientation="vertical" />
-                            <a href="#" className="">
+                            <a href={constants.dmca} className="">
                                 <Dmca className="w-13 text-muted-foreground hover:text-primary" />
                             </a>
                         </div>
