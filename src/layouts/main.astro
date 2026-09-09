@@ -1,0 +1,79 @@
+---
+import '@/styles/global.css';
+import NavBar from '@/components/navbar';
+import Footer from '@/components/footer';
+import { ClientRouter } from 'astro:transitions';
+import LoadingIndicator from 'astro-loading-indicator/component';
+import { Toaster } from '@/components/ui/sonner';
+import packageJson from '../../package.json';
+import { env } from 'cloudflare:workers';
+
+const cleanVersion = (ver?: string) => ver ? ver.replace(/^[\^~]/, '') : 'unknown';
+
+const { title, description } = Astro.props;
+
+const versions = {
+	app: packageJson.version,
+	astro: cleanVersion(packageJson.dependencies.astro),
+	react: cleanVersion(packageJson.dependencies.react),
+	shadcn: cleanVersion(packageJson.dependencies.shadcn),
+	tailwindcss: cleanVersion(packageJson.dependencies.tailwindcss)
+};
+
+const metadata = env.CF_VERSION_METADATA
+const build = {
+	id: metadata?.id ?? 'unknown',
+	date: new Date(metadata?.timestamp).toISOString().split('T')[0] ?? 'unknown'
+};
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description ?? 'no description'} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<title>{title ?? 'untitled'}</title>
+		<ClientRouter />
+		<LoadingIndicator color='var(--foreground)' />
+	</head>
+	<body class="relative min-h-screen">
+		<NavBar client:load />
+		<main class="flex justify-center min-h-screen">
+			<div class="flex flex-col w-[50%] p-1 border-x">
+				<slot />
+			</div>
+		</main>
+		<Footer props={{versions, build}} client:load />
+		<Toaster client:load />
+	</body>
+</html>
+
+<script is:inline>
+	function setDarkMode(document) {
+		const getThemePreference = () => {
+			if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+				return localStorage.getItem('theme');
+			}
+			return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'theme-light';
+		};
+		const isDark = getThemePreference() === 'dark';
+		document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+		if (typeof localStorage !== 'undefined') {
+			const observer = new MutationObserver(() => {
+				const isDark = document.documentElement.classList.contains('dark');
+				localStorage.setItem('theme', isDark ? 'dark' : 'theme-light');
+			});
+			observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+		}
+	}
+
+	setDarkMode(document);
+
+	document.addEventListener('astro:before-swap', (ev) => {
+		setDarkMode(ev.newDocument);
+	});
+</script>
