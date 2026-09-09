@@ -22,7 +22,8 @@ const versions = {
 
 const metadata = env.CF_VERSION_METADATA
 const build = {
-	id: metadata?.id ?? 'unknown',
+	id: metadata?.tag.split('-')[0] ?? 'unknown',
+	tag: metadata?.tag ?? 'unknown',
 	date: new Date(metadata?.timestamp).toISOString().split('T')[0] ?? 'unknown'
 };
 ---

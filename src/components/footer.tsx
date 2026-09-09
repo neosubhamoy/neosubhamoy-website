@@ -12,6 +12,7 @@ interface FooterProps {
     };
     build: {
         id: string;
+        tag: string;
         date: string;
     }
 }
@@ -37,7 +38,7 @@ export default function Footer({props}: {props: FooterProps}) {
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">BUILD</h6>
-                            <a target="_blank" href="#" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">{props.build.id}</a>
+                            <a target="_blank" href="#" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">{props.build.tag}</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">DATE</h6>
