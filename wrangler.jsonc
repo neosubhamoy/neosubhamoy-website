@@ -2,7 +2,7 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "neosubhamoy-website",
 	"main": "@astrojs/cloudflare/entrypoints/server",
-	"compatibility_date": "2026-09-09",
+	"compatibility_date": "2026-09-10",
 	"compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
 	"version_metadata": {
 		"binding": "CF_VERSION_METADATA"
@@ -13,5 +13,11 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"kv_namespaces": [
+		{
+			"binding": "GITHUB_KV",
+			"id": "411ebde302784e7fbf4e12aea721caec"
+		}
+	]
 }

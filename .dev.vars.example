@@ -1,0 +1,4 @@
+# This is an example file only!
+# You should put these values in your .dev.vars file :)
+
+GITHUB_API_TOKEN = Your Classic GitHub API Token Here

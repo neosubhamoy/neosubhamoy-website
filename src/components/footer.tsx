@@ -1,5 +1,5 @@
 import { FluidGradientText } from "@/components/fluid-gradient-text";
-import { Logo, GitHub, Twitter, LinkedIn, Dmca} from "@/components/icons";
+import { Logo, GitHub, Twitter, LinkedIn, Dmca, Cloudflare} from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
 import { constants } from "@/lib/constants";
 
@@ -14,6 +14,10 @@ interface FooterProps {
     build: {
         id: string;
         date: string;
+    };
+    commit: {
+        sha: string;
+        url: string;
     }
 }
 
@@ -30,15 +34,15 @@ export default function Footer({props}: {props: FooterProps}) {
                     <div className="grid grid-cols-4 divide-x divide-y divide-border border-b">
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">CRAFTED BY</h6>
-                            <a target="_blank" href={constants.socials.twitter} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">@neo_subhamoy</a>
+                            <a target="_blank" href={constants.socials.twitter} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-primary">@neo_subhamoy</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
-                            <h6 className="text-[0.65rem] text-muted-foreground">VERSION</h6>
-                            <p className="text-sm font-mono">{props.versions.app}</p>
+                            <h6 className="text-[0.65rem] text-muted-foreground">COMMIT</h6>
+                            <a target="_blank" href={constants.repo + '/commit/' + props.commit.sha} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-primary">{props.commit.sha.slice(0, 7)}</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">BUILD</h6>
-                            <a target="_blank" href="#" className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">{props.build.id}</a>
+                            <p className="text-sm font-mono">{props.build.id}</p>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">DATE</h6>
@@ -46,15 +50,18 @@ export default function Footer({props}: {props: FooterProps}) {
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">DEPLOYED ON</h6>
-                            <p className="text-sm font-mono">Cloudflare</p>
+                            <span className="flex items-center gap-2">
+                                <Cloudflare className="w-4.5" />
+                                <p className="text-sm font-mono">Cloudflare</p>
+                            </span>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">SOURCE CODE</h6>
-                            <a target="_blank" href={constants.repo} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">GitHub</a>
+                            <a target="_blank" href={constants.repo} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-primary">GitHub</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">LICENSE</h6>
-                            <a target="_blank" href={constants.repo + '/blob/main/LICENSE'} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50">MIT License</a>
+                            <a target="_blank" href={constants.repo + '/blob/main/LICENSE'} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-primary">MIT License</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">ANALYTICS</h6>
@@ -84,31 +91,35 @@ export default function Footer({props}: {props: FooterProps}) {
                                 <p className="text-sm font-mono"><span className="text-muted-foreground">03</span> shadcn/ui</p>
                                 <p className="text-sm font-mono"><span className="text-muted-foreground">04</span> Vercel</p>
                                 <p className="text-sm font-mono"><span className="text-muted-foreground">05</span> Resend</p>
-                                <p className="text-sm font-mono"><span className="text-muted-foreground">06</span> Zeno Rocha</p>
-                                <p className="text-sm font-mono"><span className="text-muted-foreground">07</span> Evil Charts</p>
+                                <p className="text-sm font-mono"><span className="text-muted-foreground">06</span> Evil Charts</p>
+                                <p className="text-sm font-mono"><span className="text-muted-foreground">07</span> Zeno Rocha</p>
                                 <p className="text-sm font-mono"><span className="text-muted-foreground">08</span> Devouring Details</p>
+                                <p className="text-sm font-mono"><span className="text-muted-foreground">09</span> Making Software</p>
+                                <p className="text-sm font-mono"><span className="text-muted-foreground">10</span> Manu Arora</p>
+                                <p className="text-sm font-mono"><span className="text-muted-foreground">11</span> Linear</p>
+                                <p className="text-sm font-mono"><span className="text-muted-foreground">12</span> Aceternity UI</p>
                             </div>
                         </div>
                     </div>
                     <div className="spacer p-1.5 border-b"></div>
                     <div className="flex items-center justify-between">
-                        <a href={constants.homepage} className="flex items-center px-2 py-1">
+                        <a href="/" className="flex items-center px-2 py-1">
                             <Logo className="w-10 h-8 text-muted-foreground hover:text-primary" />
                         </a>
                         <div className="flex items-center px-3 py-1 gap-3">
-                            <a href={constants.socials.twitter} className="">
+                            <a href={constants.socials.twitter} target="_blank">
                                 <Twitter className="w-3.5 text-muted-foreground hover:text-primary" />
                             </a>
                             <Separator orientation="vertical" />
-                            <a href={constants.socials.github} className="">
+                            <a href={constants.socials.github} target="_blank">
                                 <GitHub className="w-4 text-muted-foreground hover:text-primary" />
                             </a>
                             <Separator orientation="vertical" />
-                            <a href={constants.socials.linkedin} className="">
+                            <a href={constants.socials.linkedin} target="_blank">
                                 <LinkedIn className="w-4 text-muted-foreground hover:text-primary" />
                             </a>
                             <Separator orientation="vertical" />
-                            <a href={constants.dmca} className="">
+                            <a href={constants.dmca} target="_blank">
                                 <Dmca className="w-13 text-muted-foreground hover:text-primary" />
                             </a>
                         </div>
