@@ -1,7 +1,20 @@
 ---
 import Main from '@/layouts/main.astro';
+import { getImage } from 'astro:assets';
+import profilePic from '@/assets/images/neosubhamoy.jpg';
+import pronunciationAudio from '@/assets/audios/neosubhamoy.mp3';
+import ProfileSection from '@/components/profile-section.tsx';
+
+const optimizedProfilePic = await getImage({ src: profilePic, format: 'avif' });
 ---
 
 <Main title="Subhamoy Biswas - Full-Stack Developer & Design Engineer" description="Official Portfolio Website of Subhamoy Biswas - Full-Stack Developer and Design Engineer (reknowned as @neo_subhamoy)">
-	<h1>Hello World!</h1>
+	<div class="h-76"></div>
+	<ProfileSection
+		props={{
+			profilePic: optimizedProfilePic.src,
+			pronunciationAudio: pronunciationAudio
+		}}
+		client:load
+	/>
 </Main>
