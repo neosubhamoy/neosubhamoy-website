@@ -1,6 +1,7 @@
 import { env } from "cloudflare:workers";
+import type { Activity } from "@/components/contribution-graph";
 
-export async function useGitHubAPI<T>(url: string, cacheKey: string, cacheTtl: number = 3600): Promise<T | null> {
+export async function useGitHubAPI<T>(url: string, cacheKey: string, cacheTtl: number = 3600, useAuth: boolean = true): Promise<T | null> {
     const kv = env.GITHUB_KV;
 
     try {
@@ -11,12 +12,12 @@ export async function useGitHubAPI<T>(url: string, cacheKey: string, cacheTtl: n
         }
         console.log(`Cache miss for: ${cacheKey}`);
     
-        const response = await fetch(url, {
+        const response = useAuth ? await fetch(url, {
             headers: {
                 'Authorization': `Bearer ${env.GITHUB_API_TOKEN}`,
                 'User-Agent': 'neosubhamoy-website'
             }
-        });
+        }) : await fetch(url);
 
         if (!response.ok) {
             throw new Error(`API request failed with status ${response.status}`);
@@ -69,4 +70,14 @@ export async function getLatestCommit(repo: string, branch: string): Promise<Git
     const url = `https://api.github.com/repos/${repo}/git/ref/heads/${branch}`;
     const cacheKey = `repo_commit_${repo.replace('/', '_')}_${branch}`;
     return await useGitHubAPI<GitHubCommitRef>(url, cacheKey);
+}
+
+interface GitHubContributionsResponse {
+    contributions: Activity[]
+}
+
+export async function getContributions(username: string): Promise<GitHubContributionsResponse | null> {
+    const url = `https://github-contributions-api.jogruber.de/v4/${username}?y=last`;
+    const cacheKey = `contributions_${username}`;
+    return await useGitHubAPI<GitHubContributionsResponse>(url, cacheKey, 86400, false);
 }

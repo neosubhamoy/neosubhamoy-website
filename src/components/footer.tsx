@@ -33,11 +33,11 @@ export default function Footer({props}: {props: FooterProps}) {
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y divide-border border-b">
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">CRAFTED BY</h6>
-                            <a target="_blank" href={constants.socials.twitter.url} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-primary">@{constants.socials.twitter.username}</a>
+                            <a target="_blank" href={constants.socials.twitter.url} className="text-sm font-mono link-underline">@{constants.socials.twitter.username}</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">COMMIT</h6>
-                            <a target="_blank" href={constants.repo + '/commit/' + props.commit.sha} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-primary">{props.commit.sha.slice(0, 7)}</a>
+                            <a target="_blank" href={constants.repo + '/commit/' + props.commit.sha} className="text-sm font-mono link-underline">{props.commit.sha.slice(0, 7)}</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">BUILD</h6>
@@ -56,11 +56,11 @@ export default function Footer({props}: {props: FooterProps}) {
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">SOURCE CODE</h6>
-                            <a target="_blank" href={constants.repo} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-primary">GitHub</a>
+                            <a target="_blank" href={constants.repo} className="text-sm font-mono link-underline">GitHub</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">LICENSE</h6>
-                            <a target="_blank" href={constants.repo + '/blob/main/LICENSE'} className="text-sm font-mono underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-primary">MIT License</a>
+                            <a target="_blank" href={constants.repo + '/blob/main/LICENSE'} className="text-sm font-mono link-underline">MIT License</a>
                         </div>
                         <div className="flex flex-col p-3 gap-1">
                             <h6 className="text-[0.65rem] text-muted-foreground">ANALYTICS</h6>
@@ -105,23 +105,23 @@ export default function Footer({props}: {props: FooterProps}) {
                     <div className="spacer p-1.5 border-b"></div>
                     <div className="flex items-center justify-between">
                         <a href="/" className="flex items-center px-2 py-1">
-                            <Logo className="w-10 h-8 text-muted-foreground hover:text-primary" />
+                            <Logo className="w-10 h-8 text-muted-foreground hover:text-foreground" />
                         </a>
                         <div className="flex items-center px-3 py-1 gap-3">
                             <a href={constants.socials.twitter.url} target="_blank">
-                                <Twitter className="w-3.5 text-muted-foreground hover:text-primary" />
+                                <Twitter className="w-3.5 text-muted-foreground hover:text-foreground" />
                             </a>
                             <Separator orientation="vertical" />
                             <a href={constants.socials.github.url} target="_blank">
-                                <GitHub className="w-4 text-muted-foreground hover:text-primary" />
+                                <GitHub className="w-4 text-muted-foreground hover:text-foreground" />
                             </a>
                             <Separator orientation="vertical" />
                             <a href={constants.socials.linkedin.url} target="_blank">
-                                <LinkedIn className="w-4 text-muted-foreground hover:text-primary" />
+                                <LinkedIn className="w-4 text-muted-foreground hover:text-foreground" />
                             </a>
                             <Separator orientation="vertical" />
                             <a href={constants.dmca} target="_blank">
-                                <Dmca className="w-13 text-muted-foreground hover:text-primary" />
+                                <Dmca className="w-13 text-muted-foreground hover:text-foreground" />
                             </a>
                         </div>
                     </div>

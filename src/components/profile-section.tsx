@@ -21,7 +21,7 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
         <section className="flex flex-col">
             <div className="flex items-center border-y">
                 <div className="flex items-center justify-center p-0.5 border-r">
-                    <Avatar className="size-40">
+                    <Avatar className="size-30 md:size-40">
                         <AvatarImage
                             src={props.profilePic}
                             alt="@neo_subhamoy"
@@ -33,16 +33,17 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                 <div className="grow h-full grid grid-rows-[1fr_auto_auto] divide-y divide-border">
                     <div className=""></div>
                     <div className="flex items-center px-4 gap-2">
-                        <h1 className="text-[2rem]/none font-medium tracking-tight">Subhamoy Biswas</h1>
+                        <h1 className="hidden md:block text-[2rem]/none font-medium tracking-tight">Subhamoy Biswas</h1>
+                        <h1 className="md:hidden text-[2rem]/none font-medium tracking-tight">Subhamoy B.</h1>
                         <Verified className="size-4.5 mt-0.5" />
-                        <PronunciationVoiceover className="w-4.5 mt-0.5 text-muted-foreground hover:text-primary" audioSrc={props.pronunciationAudio} />
+                        <PronunciationVoiceover className="w-4.5 mt-0.5 text-muted-foreground hover:text-foreground" audioSrc={props.pronunciationAudio} />
                     </div>
-                    <div className="px-4 pt-1 pb-1.5">
+                    <div className="h-12 md:h-8.5 px-4 pt-1 pb-1.5">
                         <TextFlip interval={3.5}>
                             <ShimmeringText className="font-mono text-sm text-balance" text="Full Stack Developer." />
                             <ShimmeringText className="font-mono text-sm text-balance" text="Design Engineer." />
                             <ShimmeringText className="font-mono text-sm text-balance" text="Open source contributor." />
-                            <ShimmeringText className="font-mono text-sm text-balance" text="Building experiences, placing every pixel with perfection." />
+                            <ShimmeringText className="font-mono text-sm text-balance" text="Placing every pixel with perfection." />
                         </TextFlip>
                     </div>
                 </div>
@@ -55,19 +56,19 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                     <div className="flex size-6 shrink-0 items-center justify-center rounded-[0.40rem] select-none border border-muted-foreground/15 bg-muted ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line">
                         <CodeXml className="w-4 text-muted-foreground" />
                     </div>
-                    <p className="text-sm font-mono text-balance">Freelancer at @<a href="#" className="hover:underline underline-offset-3 decoration-primary ml-0.5 font-medium">Upwork</a></p>
+                    <p className="text-sm font-mono text-balance">Freelancer at @<a href="#" className="hover:link-underline ml-0.5 font-medium">Upwork</a></p>
                 </div>
                 <div className="flex items-center gap-3 md:col-span-2">
                     <div className="flex size-6 shrink-0 items-center justify-center rounded-[0.40rem] select-none border border-muted-foreground/15 bg-muted ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line">
                         <Lightbulb className="w-4 text-muted-foreground" />
                     </div>
-                    <p className="text-sm font-mono text-balance">Creator of @<a href="#" className="hover:underline underline-offset-3 decoration-primary ml-0.5 font-medium">NeoDLP</a></p>
+                    <p className="text-sm font-mono text-balance">Creator of @<a href="#" className="hover:link-underline ml-0.5 font-medium">NeoDLP</a></p>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="flex size-6 shrink-0 items-center justify-center rounded-[0.40rem] select-none border border-muted-foreground/15 bg-muted ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line">
                         <MapPin className="w-4 text-muted-foreground" />
                     </div>
-                    <a href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(constants.location)} target="_blank" className="text-sm font-mono text-balance hover:underline underline-offset-3 decoration-primary font-medium">{constants.location}</a>
+                    <a href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(constants.location)} target="_blank" className="text-sm font-mono text-balance hover:link-underline font-medium">{constants.location}</a>
                 </div>
                 <ZoneClock />
                 <div className="flex items-center gap-3">
@@ -75,9 +76,9 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                         <Phone className="w-4 text-muted-foreground" />
                     </div>
                     <div className="group flex items-center gap-2">
-                        <a href={'tel:' + constants.phone} className="text-sm font-mono text-balance hover:underline underline-offset-3 decoration-primary font-medium">{constants.phone}</a>
+                        <a href={'tel:' + constants.phone} className="text-sm font-mono text-balance hover:link-underline font-medium">{constants.phone}</a>
                         <CopyButton
-                            className="hidden group-hover:flex text-muted-foreground hover:text-primary"
+                            className="hidden group-hover:flex text-muted-foreground hover:text-foreground"
                             variant="ghost"
                             size="icon-xs"
                             text={constants.phone}
@@ -89,9 +90,9 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                         <Mail className="w-4 text-muted-foreground" />
                     </div>
                     <div className="group flex items-center gap-2">
-                        <a href={'mailto:' + constants.email} className="text-sm font-mono text-balance hover:underline underline-offset-3 decoration-primary font-medium">{constants.email}</a>
+                        <a href={'mailto:' + constants.email} className="text-sm font-mono text-balance hover:link-underline font-medium">{constants.email}</a>
                         <CopyButton
-                            className="hidden group-hover:flex text-muted-foreground hover:text-primary"
+                            className="hidden group-hover:flex text-muted-foreground hover:text-foreground"
                             variant="ghost"
                             size="icon-xs"
                             text={constants.email}
@@ -102,7 +103,7 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                     <div className="flex size-6 shrink-0 items-center justify-center rounded-[0.40rem] select-none border border-muted-foreground/15 bg-muted ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line">
                         <Link className="w-4 text-muted-foreground" />
                     </div>
-                    <a href="/" className="text-sm font-mono text-balance hover:underline underline-offset-3 decoration-primary font-medium">{constants.homepage}</a>
+                    <a href="/" className="text-sm font-mono text-balance hover:link-underline font-medium">{constants.homepage}</a>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="flex size-6 shrink-0 items-center justify-center rounded-[0.40rem] select-none border border-muted-foreground/15 bg-muted ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line">
@@ -112,10 +113,10 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                 </div>
             </div>
             <h2 className="sr-only">Socials</h2>
-            <div className="flex items-center gap-3 p-3">
+            <div className="flex items-center gap-3 p-3 border-b">
                 <Tooltip>
                     <TooltipTrigger delay={100} render={
-                        <a href={constants.socials.twitter.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-primary")}>
+                        <a href={constants.socials.twitter.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-foreground")}>
                             <Twitter className="w-4" />
                         </a>
                     } />
@@ -125,7 +126,7 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                 </Tooltip>
                 <Tooltip>
                     <TooltipTrigger delay={100} render={
-                        <a href={constants.socials.github.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-primary")}>
+                        <a href={constants.socials.github.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-foreground")}>
                             <GitHub className="w-4" />
                         </a>
                     } />
@@ -135,7 +136,7 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                 </Tooltip>
                 <Tooltip>
                     <TooltipTrigger delay={100} render={
-                        <a href={constants.socials.linkedin.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-primary")}>
+                        <a href={constants.socials.linkedin.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-foreground")}>
                             <LinkedIn className="w-4" />
                         </a>
                     } />
@@ -145,7 +146,7 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                 </Tooltip>
                 <Tooltip>
                     <TooltipTrigger delay={100} render={
-                        <a href={constants.socials.discord.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-primary")}>
+                        <a href={constants.socials.discord.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-foreground")}>
                             <Discord className="w-4" />
                         </a>
                     } />
@@ -155,7 +156,7 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                 </Tooltip>
                 <Tooltip>
                     <TooltipTrigger delay={100} render={
-                        <a href={constants.socials.reddit.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-primary")}>
+                        <a href={constants.socials.reddit.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-foreground")}>
                             <Reddit className="w-4" />
                         </a>
                     } />
@@ -165,7 +166,7 @@ export default function ProfileSection({ props }: { props: ProfileSectionProps }
                 </Tooltip>
                 <Tooltip>
                     <TooltipTrigger delay={100} render={
-                        <a href={constants.socials.bluesky.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-primary")}>
+                        <a href={constants.socials.bluesky.url + '?utm_source=' + constants.homepage} target="_blank" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-md text-muted-foreground hover:text-foreground")}>
                             <Bluesky className="w-4" />
                         </a>
                     } />

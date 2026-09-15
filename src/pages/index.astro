@@ -4,8 +4,14 @@ import { getImage } from 'astro:assets';
 import profilePic from '@/assets/images/neosubhamoy.jpg';
 import pronunciationAudio from '@/assets/audios/neosubhamoy.mp3';
 import ProfileSection from '@/components/profile-section.tsx';
+import { getContributions } from '@/hooks/use-github-api';
+import ContributionsSection from '@/components/contributions-section';
+import { constants } from '@/lib/constants';
 
 const optimizedProfilePic = await getImage({ src: profilePic, format: 'avif' });
+
+const githubContributions = await getContributions("neosubhamoy");
+const contributions = githubContributions?.contributions ?? [];
 ---
 
 <Main title="Subhamoy Biswas - Full-Stack Developer & Design Engineer" description="Official Portfolio Website of Subhamoy Biswas - Full-Stack Developer and Design Engineer (reknowned as @neo_subhamoy)">
@@ -14,6 +20,13 @@ const optimizedProfilePic = await getImage({ src: profilePic, format: 'avif' });
 		props={{
 			profilePic: optimizedProfilePic.src,
 			pronunciationAudio: pronunciationAudio
+		}}
+		client:load
+	/>
+	<ContributionsSection
+		props={{
+			contributions: contributions,
+			profileUrl: constants.socials.github.url
 		}}
 		client:load
 	/>
