@@ -16,6 +16,7 @@ const { title, description } = Astro.props;
 const versions = {
 	astro: cleanVersion(packageJson.dependencies.astro),
 	react: cleanVersion(packageJson.dependencies.react),
+	baseui: cleanVersion(packageJson.dependencies['@base-ui/react']),
 	shadcn: cleanVersion(packageJson.dependencies.shadcn),
 	tailwindcss: cleanVersion(packageJson.dependencies.tailwindcss)
 };
@@ -51,7 +52,7 @@ const commit = latestCommit?.object ?? { sha: 'unknown', url: '#' };
 		<TooltipProvider client:load>
 			<NavBar props={{stars}} client:load />
 			<main class="flex justify-center min-h-screen">
-				<div class="flex flex-col w-[97%] sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%] border-x">
+				<div class="flex flex-col w-[96%] sm:w-[90%] md:max-w-3xl border-x">
 					<slot />
 				</div>
 			</main>

@@ -46,7 +46,7 @@ export default function ZoneClock() {
     : "--";
 
     return (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
             <div className="flex size-6 shrink-0 items-center justify-center rounded-[0.40rem] select-none border border-muted-foreground/15 bg-muted ring-1 ring-border/50 ring-offset-1 ring-offset-background dark:ring-line">
                 <svg
                     width="24"

@@ -7,6 +7,7 @@ import ProfileSection from '@/components/profile-section.tsx';
 import { getContributions } from '@/hooks/use-github-api';
 import ContributionsSection from '@/components/contributions-section';
 import { constants } from '@/lib/constants';
+import SummerySection from '@/components/summery-section.tsx';
 
 const optimizedProfilePic = await getImage({ src: profilePic, format: 'avif' });
 
@@ -30,4 +31,5 @@ const contributions = githubContributions?.contributions ?? [];
 		}}
 		client:load
 	/>
+	<SummerySection client:load />
 </Main>
